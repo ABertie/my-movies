@@ -1,48 +1,61 @@
-import CastMember from "@/componets/cast-card";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import CastMember from "@/components/cast-card";
+import Heading from "@/components/headers";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { test } from "../layout";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import Stars from "@/components/star";
+import Button from "@/components/button";
+import Link from "next/link";
 
-export default function Movieinfo() {
+export default function Movieinfo({ params }) {
+    // console.log(test.id)
+    // console.log(params.id);
     return (
         <>
-            <video></video>
-            <section>
-                <div className="flex justify-between">
-                    <h2>lorem lorem lorem</h2>
-                    <FontAwesomeIcon icon={['far', 'bookmark']} />
+            <header className="p-6 absolute inset-0 bottom-auto ">
+                <Link href="/"><FontAwesomeIcon icon={faArrowLeft} className="text-xl text-white" /></Link>
+            </header>
+            {/* <video></video> */}
+            <div className="bg-[url('http://via.placeholder.com/100x100')] h-52 bg-center bg-no-repeat bg-cover"></div>
+            <section className="flex flex-col gap-3 p-6 py-8 bg-white absolute top-48 inset-0 rounded-xl">
+                <div className="flex justify-between gap-12">
+                    <Heading level="1">{test?.title}</Heading>
+                    <FontAwesomeIcon icon={faBookmark} className="text-lg pt-2" />
                 </div>
-                <div className="flex">
-                    <FontAwesomeIcon icon={faStar} color="gold" />
-                    10/10 iMDb
-                </div>
-                <ul className="flex">
-                    <li>lorem</li>
-                    <li>lorem</li>
-                    <li>lorem</li>
+                <Stars>{test?.stars}</Stars>
+                <ul className="flex gap-2 gap-y-0">
+                    {test?.themes?.map(theme =>
+                        <li key={theme}><Button theme={true}>{theme}</Button></li>
+                    )}
                 </ul>
-                <div className="flex flex-col">
-                    <span>Length</span>
-                    <time>2h 28min</time>
-                </div>
-                <div className="flex flex-col">
-                    <span>Language</span>
-                    <p>English</p>
-                </div>
-                <div className="flex flex-col">
-                    <span>Ratings</span>
-                    <p>PG-13</p>
-                </div>
-                <h3>Description</h3>
-                <p>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                <div>
-                    <div>
-                        <h3>Cast</h3>
-                        <button>See more</button>
+                <div className="flex justify-between text-sm">
+                    <div className="flex flex-col">
+                        <Heading level="3">Length</Heading>
+                        <time className="font-semibold">{test?.time}</time>
                     </div>
-                    <ul className="flex">
-                        <CastMember />
-                        <CastMember />
-                        <CastMember />
+                    <div className="flex flex-col">
+                        <Heading level="3">Language</Heading>
+                        <p className="font-semibold">{test.language}</p>
+                    </div>
+                    <div className="flex flex-col">
+                        <Heading level="3">Ratings</Heading>
+                        <p className="font-semibold">{test?.ratings}</p>
+                    </div>
+                </div>
+                <div className="py-2">
+                    <Heading>Description</Heading>
+                    <p className="text-grey-dark text-sm leading-6 pt-1">{test?.description}</p>
+                </div>
+                <div>
+                    <div className="flex justify-between">
+                        <Heading>Cast</Heading>
+                        <Button>See more</Button>
+                    </div>
+                    <ul className="flex basis-1/4 gap-3">
+                        {test?.cast?.map(member =>
+                            <CastMember key={member?.name} CastMember={member} />
+                        )}
                     </ul>
                 </div>
             </section>

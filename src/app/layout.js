@@ -1,29 +1,62 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./globals.css";
-import { faArrowLeft, faClapperboard, faTicket } from "@fortawesome/free-solid-svg-icons";
-import Switch from "@/componets/switch";
+import { Yrsa, Mulish } from 'next/font/google'
+
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+
+import Switch from "@/components/switch";
 
 export const metadata = {
   title: "MyMovies",
   description: "New movies comming up",
 }
+const merriweather = Yrsa({
+  subsets: ['latin'],
+  variable: '--font-merriweather',
+})
+
+const mulish = Mulish({
+  subsets: ['latin'],
+  variable: '--font-mulish',
+})
+
+export const test = {
+  id: "test",
+  title: "Spiderman: No Way Home",
+  stars: "10",
+  img: "https://pics.filmaffinity.com/spider_man_no_way_home-642739124-large.jpg",
+  time: "2h 28m",
+  themes: ["action", "adventure", "fantasy"],
+  language: "English",
+  ratings: "PG-13",
+  description: "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+  cast: [
+    {
+      name: "Tom Holland",
+      img: "http://via.placeholder.com/100x100",
+    },
+    {
+      name: "Zendaya",
+      img: "http://via.placeholder.com/100x100",
+    },
+    {
+      name: "Jacon Batalon",
+      img: "http://via.placeholder.com/100x100",
+    },
+    {
+      name: "Jacon Batalon",
+      img: "http://via.placeholder.com/100x100",
+    }
+  ]
+}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="relative">
-        <header className="flex items-center justify-between h-12">
-          <FontAwesomeIcon icon={faArrowLeft} className="text-black h-1/2 invisible" />
-          <h1>MyMovies</h1>
-          <Switch />
-        </header>
+      <body className={`${merriweather.variable} ${mulish.variable} font-sans relative`}>
+        <Switch />
         {children}
-        <footer className="flex items-center justify-between px-6 py-4 fixed inset-0 top-auto">
-          <FontAwesomeIcon icon={faClapperboard} className="h-5" />
-          <FontAwesomeIcon icon={faTicket} className="h-5" />
-          <FontAwesomeIcon icon={faBookmark} className="h-5" />
-        </footer>
       </body>
     </html>
   )
