@@ -1,4 +1,4 @@
-import Button from "./button";
+import ButtonLookingLink from "./link";
 import Heading from "./headers";
 
 export default function Section({ header, children }) {
@@ -6,7 +6,7 @@ export default function Section({ header, children }) {
         <section>
             <div className="flex items-center justify-between pb-2">
                 <Heading>{header}</Heading>
-                <Button>See more</Button>
+                <ButtonLookingLink>See more</ButtonLookingLink>
             </div>
             {children}
         </section>

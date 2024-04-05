@@ -24,7 +24,7 @@ const mulish = Mulish({
 export const test = {
   id: "test",
   title: "Spiderman: No Way Home",
-  stars: "10",
+  stars: "9.1",
   img: "https://pics.filmaffinity.com/spider_man_no_way_home-642739124-large.jpg",
   time: "2h 28m",
   themes: ["action", "adventure", "fantasy"],
@@ -43,10 +43,6 @@ export const test = {
     {
       name: "Jacon Batalon",
       img: "http://via.placeholder.com/100x100",
-    },
-    {
-      name: "Jacon Batalon",
-      img: "http://via.placeholder.com/100x100",
     }
   ]
 }
@@ -54,7 +50,7 @@ export const test = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${merriweather.variable} ${mulish.variable} font-sans relative`}>
+      <body className={`${merriweather.variable} ${mulish.variable} font-sans relative min-h-screen`}>
         <Switch />
         {children}
       </body>

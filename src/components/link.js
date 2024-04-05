@@ -1,4 +1,4 @@
-export default function Button({ children, theme }) {
+export default function ButtonLookingLink({ children, theme }) {
     return(
         <button className={`text-grey-mid border-grey-mid px-2 h-6 rounded-full 
         ${theme === true 
