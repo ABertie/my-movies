@@ -11,21 +11,26 @@ export default function Movies() {
   return (
     <>
       <header className="flex items-center justify-center p-6">
-        <p className="font-serif text-indigo-dark font-bold text-2xl">MyMovies</p>
+        <p className="font-serif text-indigo-dark dark:text-indigo-light font-bold text-2xl">MyMovies</p>
       </header>
-      <main className="p-6 py-4">
-        <Section header={"Now Showing"}>
-          <div className="flex">
-            <SliderCard id={test?.id} movie={test} />
+      <main className="py-4">
+        <Section header={"Now Showing"} className="*:px-6">
+          <div className="overflow-x-scroll pb-4">
+            <div className="flex w-max gap-4">
+              <SliderCard id={test?.id} movie={test} />
+              <SliderCard id={test?.id} movie={test} />
+              <SliderCard id={test?.id} movie={test} />
+              <SliderCard id={test?.id} movie={test} />
+            </div>
           </div>
         </Section>
-        <Section header={"Popular"}>
+        <Section header={"Popular"} className="p-6 pt-4">
           <div className="flex flex-col">
             <InfoCard id={test?.id} movie={test} />
           </div>
         </Section>
       </main>
-      <footer className="flex items-center justify-between shadow-footer px-12 py-6 text-xl bg-white fixed inset-0 top-auto">
+      <footer className="flex items-center justify-between shadow-footer px-12 py-6 text-xl bg-white dark:bg-black fixed inset-0 top-auto">
         <Link href="/movies"><FontAwesomeIcon icon={faClapperboard} className="h-5" /></Link>
         <FontAwesomeIcon icon={faTicket} className="h-5" />
         <FontAwesomeIcon icon={faBookmark} className="h-5" />

@@ -2,8 +2,6 @@ import "./globals.css";
 import { Yrsa, Mulish } from 'next/font/google'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
 import Switch from "@/components/switch";
 
@@ -25,7 +23,7 @@ export const test = {
   id: "test",
   title: "Spiderman: No Way Home",
   stars: "9.1",
-  img: "https://pics.filmaffinity.com/spider_man_no_way_home-642739124-large.jpg",
+  img: "https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg",
   time: "2h 28m",
   themes: ["action", "adventure", "fantasy"],
   language: "English",
@@ -50,7 +48,7 @@ export const test = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${merriweather.variable} ${mulish.variable} font-sans relative min-h-screen`}>
+      <body className={`${merriweather.variable} ${mulish.variable} font-sans relative min-h-screen dark:bg-black dark:text-white`}>
         <Switch />
         {children}
       </body>

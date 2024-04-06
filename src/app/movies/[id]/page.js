@@ -19,7 +19,7 @@ export default function Movieinfo({ params }) {
             {/* <video></video> */}
             <div className="bg-[url('http://via.placeholder.com/100x100')] 
             h-52 bg-center bg-no-repeat bg-cover"></div>
-            <section className="flex flex-col gap-3 p-6 py-8 bg-white absolute top-48 inset-0 bottom-auto rounded-xl">
+            <section className="flex flex-col gap-3 p-6 py-8 bg-white dark:bg-black absolute top-48 inset-0 bottom-auto rounded-xl">
                 <div className="flex justify-between gap-12">
                     <Heading level="1">{test?.title}</Heading>
                     <FontAwesomeIcon icon={faBookmark} className="text-lg pt-2" />
