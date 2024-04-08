@@ -1,14 +1,10 @@
 import "./globals.css";
-import { Yrsa, Mulish } from 'next/font/google'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import Switch from "@/components/switch";
 
-export const metadata = {
-  title: "MyMovies",
-  description: "New movies comming up",
-}
+import { Yrsa, Mulish } from 'next/font/google'
+
 const merriweather = Yrsa({
   subsets: ['latin'],
   variable: '--font-merriweather',
@@ -18,6 +14,11 @@ const mulish = Mulish({
   subsets: ['latin'],
   variable: '--font-mulish',
 })
+
+export const metadata = {
+  title: "MyMovies",
+  description: "New movies comming up",
+}
 
 export const test = {
   id: "test",

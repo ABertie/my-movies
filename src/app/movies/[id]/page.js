@@ -53,7 +53,7 @@ export default function Movieinfo({ params }) {
                         <Heading>Cast</Heading>
                         <ButtonLookingLink>See more</ButtonLookingLink>
                     </div>
-                    <ul className="flex basis-1/4 gap-3">
+                    <ul className="grid grid-cols-4 gap-3">
                         {test?.cast?.map(member =>
                             <CastMember key={member?.name} CastMember={member} />
                         )}
