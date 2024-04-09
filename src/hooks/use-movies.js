@@ -1,23 +1,23 @@
 "use client"
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function useMovies() { 
+axios.defaults.baseURL = "https://api.themoviedb.org/3"
+
+export default function useMovies(source, add) {
     const [response, setResponse] = useState({})
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
-
-//   const response = await fetch();
-//   const movies = await response.json();
-
-    const key = process.env.MY_MOVIES_API_KEY
-
+    
+    const key = process.env.NEXT_PUBLIC_MY_MOVIES_API_KEY
+    
     async function getData() {
         try {
             // throw new Error("This in an error")
-            const RESPONSE = await fetch(`https://api.themoviedb.org/3/movie/11?api_key=${key}`)
-            setResponse(await RESPONSE.json())
-        } 
+            const RESPONSE = await axios.get(`${source}?api_key=${key}&language=en-US${!add ? "" : add}`)
+            setResponse(RESPONSE.data)
+        }
         catch {
             setError(error)
         }
@@ -25,8 +25,8 @@ export default function useMovies() {
             setLoading(false)
         }
     }
-    
-    useEffect(function() {
+
+    useEffect(function () {
         getData()
     }, [])
 

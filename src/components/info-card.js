@@ -1,25 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ButtonLookingLink from "./link";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 import Stars from "./star";
 import Link from "next/link";
+import Time from "./time";
 
-export default function InfoCard({id, movie}) {
+export default function InfoCard({movie}) {
     return (
-        <Link href={`/movies/${id}`} className="flex gap-4">
-            <img src={movie?.img} className="w-24 h-full" /> {/*  ? w-[30%] */}
+        <Link href={`/movies/${movie.id}`} className="flex gap-4">
+            <img src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`} className="w-24 h-full" /> {/*  ? w-[30%] */}
             <div className="flex flex-col gap-1">
                 <p className="font-bold">{movie?.title}</p>
-                <Stars>{movie?.stars}</Stars>
+                <Stars>{movie?.vote_average}</Stars>
                 <ul className="flex flex-wrap gap-y-0 gap-1">
-                    {movie?.themes?.map(theme => 
-                        <li key={theme}><ButtonLookingLink theme={true}>{theme}</ButtonLookingLink></li>
+                    {movie?.genres?.map(theme => 
+                        <li key={theme.id}><ButtonLookingLink theme={true}>{theme.name}</ButtonLookingLink></li>
                     )}
                 </ul>
-                <div className="flex gap-1 text-sm">
-                    <FontAwesomeIcon icon={faClock} className="text-[10px] self-center"/>
-                    <time>{movie?.time}</time>
-                </div>
+                <Time movie={movie}/>
             </div>
         </Link>
     )
