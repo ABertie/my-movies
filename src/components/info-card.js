@@ -6,7 +6,7 @@ import Time from "./time";
 export default function InfoCard({movie}) {
     return (
         <Link href={`/movies/${movie.id}`} className="flex gap-4">
-            <img src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`} className="w-24 h-full" /> {/*  ? w-[30%] */}
+            <img loading="lazy" alt={movie?.title + " poster"} src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`} className="w-24 h-full" /> {/*  ? w-[30%] */}
             <div className="flex flex-col gap-1">
                 <p className="font-bold">{movie?.title}</p>
                 <Stars>{movie?.vote_average}</Stars>
