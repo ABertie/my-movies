@@ -23,7 +23,7 @@ export default function Movieinfo({ params }) {
             {!loading ?
                 <>
                     <header className="p-6 absolute z-20 inset-0 bottom-auto ">
-                        <Link href="/"><FontAwesomeIcon icon={faArrowLeft} className="text-xl text-white" /></Link>
+                        <Link href="/"><FontAwesomeIcon icon={faArrowLeft} className="text-xl text-white" /><span className="sr-only">back</span></Link>
                     </header>
                     {/* {!video
                         ? <img loading="lazy" alt={response?.title + " poster"} src={`https://image.tmdb.org/t/p/w500${response?.backdrop_path}`} className="rounded-none" />
@@ -36,7 +36,7 @@ export default function Movieinfo({ params }) {
                             <FontAwesomeIcon icon={faBookmark} className="text-lg pt-2" />
                         </div>
                         <Stars>{response?.vote_average}</Stars>
-                        <ul className="flex flex-wrap gap-2 gap-y-0">
+                        <ul className="flex flex-wrap gap-2 gap-y-1">
                             {response?.genres?.map(genre =>
                                 <li key={genre.id}><ButtonLookingLink genre={true}>{genre.name}</ButtonLookingLink></li>
                             )}
@@ -66,7 +66,7 @@ export default function Movieinfo({ params }) {
                                         <div className="aspect-square flex justify-center overflow-hidden rounded-lg relative">
                                             {cast?.profile_path === null
                                                 ? <FontAwesomeIcon icon={faUser} className="text-6xl" />
-                                                : <img src={`https://image.tmdb.org/t/p/original/${cast?.profile_path}`} className="absolute -top-2" />}
+                                                : <img alt={"images of " + cast?.name} src={`https://image.tmdb.org/t/p/original/${cast?.profile_path}`} className="absolute -top-2" />}
                                         </div>
                                         <p>{cast?.name}</p>
                                     </li>

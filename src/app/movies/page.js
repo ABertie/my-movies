@@ -1,21 +1,45 @@
-import List from "@/components/cards-list";
-import Slider from "@/components/cards-slider";
+"use client"
+
 import Footer from "@/components/footer";
+import InfoCard from "@/components/info-card";
+import Section from "@/components/section";
+import SliderCard from "@/components/silder-card";
+import useMovies from "@/hooks/use-movies";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Movies() {
+  const { response: showRes, error: showError, loading: showLoad } = useMovies("/movie/now_playing")
+  const { response: popRes, error: popError, loading: popLoad } = useMovies("/movie/popular") 
+  const { response: gerneRes, error: genreError, loading: genreLoad } = useMovies("/genre/movie/list")
   return (
     <>
-      <header className="flex items-center justify-center p-6">
-        <p className="font-serif text-indigo-dark dark:text-indigo-light font-bold text-2xl">MyMovies</p>
-      </header>
-      <main className="py-4 flex flex-col justify-center">
-        {/* <FontAwesomeIcon icon={faSpinner} className="fa-spin" /> */}
-        <Slider url={["/movie/now_playing"]} />
-        <List url={["/movie/popular"]} />
-      </main>
-      <Footer />
+      {showError}
+      {popError}
+      {!showLoad && !popLoad && !genreLoad
+        ? <>
+          <header className="flex items-center justify-center p-6">
+            <p className="font-serif text-indigo-dark dark:text-indigo-light font-bold text-2xl">MyMovies</p>
+          </header>
+          <main className="py-4 flex flex-col justify-center">
+            <Section header="Now Showing" className="*:first:px-6">
+              <div className="overflow-x-scroll scroll-px-4 pb-4 snap-x">
+                <div className="flex w-max gap-4">
+                  {showRes?.results?.map(movie => <SliderCard key={movie.id} movie={movie} />)}
+                </div>
+              </div>
+            </Section>
+            <Section header="Popular" className="p-6 pt-4">
+              <div className="flex flex-col gap-4">
+                {popRes?.results?.map(movie => <InfoCard key={movie.id} movie={movie} genres={gerneRes.genres}/>)}
+              </div>
+            </Section>
+          </main>
+          <Footer />
+        </>
+        : <div className="flex h-40 items-center justify-center">
+          <FontAwesomeIcon icon={faSpinner} className="fa-spin text-3xl" />
+        </div>}
     </>
   )
 }
