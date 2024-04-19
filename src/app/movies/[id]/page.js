@@ -1,7 +1,7 @@
 "use client"
 
 import Heading from "@/components/headers";
-import { faArrowLeft, faSpinner, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faPlay, faSpinner, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import Stars from "@/components/star";
@@ -10,9 +10,15 @@ import Link from "next/link";
 import useMovies from "@/hooks/use-movies";
 import Time from "@/components/time";
 import Section from "@/components/section";
+import { useState } from "react";
 
 export default function Movieinfo({ params }) {
     const { response, error, loading } = useMovies(`/movie/${params.id}`, "&append_to_response=videos,credits")
+    const [click, setClick] = useState(false)
+
+    function clickHandler() {
+        setClick(true)
+    }
 
     let video
     response?.videos?.results?.forEach(e => { if (e.type === "Trailer") video = e.key })
@@ -25,11 +31,18 @@ export default function Movieinfo({ params }) {
                     <header className="p-6 absolute z-20 inset-0 bottom-auto ">
                         <Link href="/"><FontAwesomeIcon icon={faArrowLeft} className="text-xl text-white" /><span className="sr-only">back</span></Link>
                     </header>
-                    {/* {!video
+                    {!video
                         ? <img loading="lazy" alt={response?.title + " poster"} src={`https://image.tmdb.org/t/p/w500${response?.backdrop_path}`} className="rounded-none" />
-                        : <iframe className="w-full h-52" src={`https://www.youtube.com/embed/${video}?autoplay=1&controls=0&showinfo=0&rel=0&loop=1`} 
-                        loading="lazy" title="YouTube video player" allowFullScreen ></iframe>} */}
-                    <img loading="lazy" alt={response?.title + " poster"} src={`https://image.tmdb.org/t/p/w500${response?.backdrop_path}`} className="rounded-none" />
+                        : !click
+                            ? <div className="flex items-center justify-center">
+                                <img loading="lazy" alt={response?.title + " poster"} src={`https://image.tmdb.org/t/p/w500${response?.backdrop_path}`} className="rounded-none" />
+                                <button onClick={clickHandler} className="absolute flex flex-col justify-center items-center text-white">
+                                    <FontAwesomeIcon icon={faPlay} className="text-xl text-indigo-dark bg-white p-3 aspect-square rounded-full" />
+                                    <p>Play Trailer</p>
+                                </button>
+                            </div>
+                            : <iframe className="w-full h-52 absolute" src={`https://www.youtube.com/embed/${video}?autoplay=1&controls=0&showinfo=0&rel=0`} loading="lazy" title="YouTube video player" allowFullScreen allow="autoplay"></iframe>
+                    }
                     <section className="flex flex-col gap-3 p-6 py-8 bg-white dark:bg-black absolute top-48 inset-0 bottom-auto rounded-xl">
                         <div className="flex justify-between gap-12">
                             <Heading level="1">{!response?.title ? response?.name : response?.title}</Heading>
@@ -76,7 +89,7 @@ export default function Movieinfo({ params }) {
                     </section>
                 </>
                 : <div className="flex justify-center pt-20">
-                    <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                    <FontAwesomeIcon icon={faSpinner} className="fa-spin text-3xl" />
                     {/* <i class="fa-solid fa-snowflake fa-spin fa-spin-reverse text-[3rem] text-primary-dark"></i> */}
                 </div>
             }
