@@ -26,7 +26,7 @@ export default function Burger() {
     async function searchHandler(event) {
         setSearch(event.target.value.replace(" ", "+"))
         setResult(await Search(search))
-        console.log(result);
+        // console.log(result);
     }
 
     return (
@@ -39,7 +39,7 @@ export default function Burger() {
                     <input type="search" className="bg-transparent w-full text-black outline-none " onChange={searchHandler}/>
                 </label>
                 <ul className="flex flex-col p-4 gap-2">
-                    {result.map(object => <li><InfoCard key={object.id} movie={object} genres={gerneRes.genres}/></li>)}
+                    {result.map(object => <li key={object.id}><InfoCard movie={object} genres={gerneRes.genres}/></li>)}
                 </ul>
             </div>}
             <label className="absolute z-50 left-6 top-6 flex justify-center items-center">
