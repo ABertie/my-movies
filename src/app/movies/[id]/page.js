@@ -7,13 +7,14 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import Stars from "@/components/star";
 import ButtonLookingLink from "@/components/link";
 import Link from "next/link";
-import useMovies from "@/hooks/use-movies";
 import Time from "@/components/time";
 import Section from "@/components/section";
 import { useState } from "react";
+import Video from "@/components/video";
+import getMovies from "@/hooks/get-movies";
 
 export default function Movieinfo({ params }) {
-    const { response, error, loading } = useMovies(`/movie/${params.id}`, "&append_to_response=videos,credits")
+    const { response, error, loading } = getMovies(`/movie/${params.id}`, "&append_to_response=videos,credits")
     const [click, setClick] = useState(false)
 
     function clickHandler() {
@@ -41,9 +42,9 @@ export default function Movieinfo({ params }) {
                                     <p>Play Trailer</p>
                                 </button>
                             </div>
-                            : <iframe className="w-full h-52 absolute" src={`https://www.youtube.com/embed/${video}?autoplay=1&controls=0&showinfo=0&rel=0`} loading="lazy" title="YouTube video player" allowFullScreen allow="autoplay"></iframe>
+                            : <Video video={video}/>
                     }
-                    <section className="flex flex-col gap-3 p-6 py-8 bg-white dark:bg-black absolute top-48 inset-0 bottom-auto rounded-xl">
+                    <main className="flex flex-col gap-3 p-6 py-8 bg-white dark:bg-black absolute top-48 inset-0 bottom-auto rounded-xl">
                         <div className="flex justify-between gap-12">
                             <Heading level="1">{!response?.title ? response?.name : response?.title}</Heading>
                             <FontAwesomeIcon icon={faBookmark} className="text-lg pt-2" />
@@ -86,11 +87,10 @@ export default function Movieinfo({ params }) {
                                 )}
                             </ul>
                         </Section>
-                    </section>
+                    </main>
                 </>
                 : <div className="flex justify-center pt-20">
                     <FontAwesomeIcon icon={faSpinner} className="fa-spin text-3xl" />
-                    {/* <i class="fa-solid fa-snowflake fa-spin fa-spin-reverse text-[3rem] text-primary-dark"></i> */}
                 </div>
             }
         </>

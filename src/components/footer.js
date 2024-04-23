@@ -6,9 +6,18 @@ import Link from "next/link";
 export default function Footer() {
     return (
         <footer className="flex items-center justify-between shadow-footer px-12 py-6 text-xl bg-white dark:bg-black sticky inset-0 top-auto">
-            <Link href="/movies" ><FontAwesomeIcon icon={faClapperboard} className="h-5" /><span className="sr-only">Movies</span></Link>
-            <FontAwesomeIcon icon={faTicket} className="h-5" />
-            <Link href="/favorits"><FontAwesomeIcon icon={faBookmark} className="h-5" /><span className="sr-only">Favorits</span></Link>
+            <Link href="/movies">
+                <FontAwesomeIcon icon={faClapperboard} className="h-5" />
+                <span className="sr-only">Movies</span>
+            </Link>
+            <Link href="/signin">
+                <FontAwesomeIcon icon={faTicket} className="h-5" />
+                <span className="sr-only">sign in</span>
+            </Link>
+            <Link href="/favorits">
+                <FontAwesomeIcon icon={faBookmark} className="h-5" />
+                <span className="sr-only">Favorits</span>
+            </Link>
         </footer>
     )
 }
