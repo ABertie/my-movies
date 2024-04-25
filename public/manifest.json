@@ -1,0 +1,15 @@
+{
+    "name": "My Movie",
+    "short_name": "My Movie",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "New movies comming up",
+    "icons": [
+        {
+          "src": "/blue_square.svg",
+          "size": "56x56",
+          "type": "image/svg"
+        }
+      ]
+}

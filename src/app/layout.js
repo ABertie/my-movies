@@ -18,6 +18,7 @@ const mulish = Mulish({
 export const metadata = {
   title: "MyMovies",
   description: "New movies comming up",
+  manifest : "/manifest.json"
 }
 
 export default function RootLayout({ children }) {
