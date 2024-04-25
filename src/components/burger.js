@@ -1,11 +1,11 @@
 "use client"
 
-import Search from "@/lib/search"
 import { faBarsStaggered, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import InfoCard from "./info-card"
 import getMovies from "@/hooks/get-movies"
+import Get from "@/lib/get"
 
 export default function Burger() {
     const { response: gerneRes, error: genreError, loading: genreLoad } = getMovies("/genre/movie/list")
@@ -25,7 +25,7 @@ export default function Burger() {
     
     async function searchHandler(event) {
         setSearch(event.target.value.replace(" ", "+"))
-        setResult(await Search(search))
+        setResult(await Get(`/search/movie?language=en-US&query=${search}`))
         // console.log(result);
     }
 

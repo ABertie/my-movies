@@ -1,11 +1,11 @@
-export default function Heading({ children , level = "2"}) {
+export default function Heading({ children , level = "2", className}) {
     switch (level) {
         case "1":
-            return <h1 className="font-bold text-2xl">{children}</h1>
+            return <h1 className={`font-bold text-2xl ${className}`}>{children}</h1>
         case "2":
-            return <h2 className="font-serif text-indigo-dark dark:text-indigo-light font-bold text-2xl">{children}</h2>
+            return <h2 className={`font-serif text-indigo-dark dark:text-indigo-light font-bold text-2xl ${className}`}>{children}</h2>
         case "3":
-            return <h3 className="text-grey-dark">{children}</h3>
+            return <h3 className={`text-grey-dark ${className}`}>{children}</h3>
         // case "4":
         //     return <h4 className="font-serif text-indigo-dark font-bold text-2xl">{children}</h4>
         // case "5":
