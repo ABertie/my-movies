@@ -1,11 +1,11 @@
 "use client"
 
-import Search from "@/lib/search"
 import { faBarsStaggered, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import InfoCard from "./info-card"
 import getMovies from "@/hooks/get-movies"
+import Get from "@/lib/get"
 
 export default function Burger() {
     const { response: gerneRes, error: genreError, loading: genreLoad } = getMovies("/genre/movie/list")
@@ -25,7 +25,7 @@ export default function Burger() {
     
     async function searchHandler(event) {
         setSearch(event.target.value.replace(" ", "+"))
-        setResult(await Search(search))
+        setResult(await Get(`/search/movie?language=en-US&query=${search}`))
         // console.log(result);
     }
 
@@ -33,13 +33,13 @@ export default function Burger() {
         <>
             {!show
             ? ""
-            : <div className="absolute z-40 w-10/12 bg-indigo-dark left-0 top-0 rounded-r-lg">
+            : <div className="absolute z-40 w-10/12 bg-indigo-dark left-0 top-0 rounded-r-xl rounded-b-xl">
                 <label className="m-6 ml-16 flex items-center justify-center bg-white">
                     <FontAwesomeIcon icon={faSearch} className="text-indigo-dark p-1"/>
                     <input type="search" className="bg-transparent w-full text-black outline-none " onChange={searchHandler}/>
                 </label>
                 <ul className="flex flex-col p-4 gap-2">
-                    {result.map(object => <li key={object.id}><InfoCard movie={object} genres={gerneRes.genres}/></li>)}
+                    {result?.data?.results?.map(object => <li key={object.id}><InfoCard movie={object} genres={gerneRes.genres}/></li>)}
                 </ul>
             </div>}
             <label className="absolute z-50 left-6 top-6 flex justify-center items-center">
