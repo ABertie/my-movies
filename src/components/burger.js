@@ -33,7 +33,7 @@ export default function Burger() {
         <>
             {!show
             ? ""
-            : <div className="absolute z-40 w-10/12 bg-indigo-dark left-0 top-0 rounded-r-xl rounded-b-xl">
+            : <div className="absolute z-40 w-10/12 bg-grey-mid dark:bg-indigo-dark left-0 top-0 rounded-r-xl rounded-b-xl">
                 <label className="m-6 ml-16 flex items-center justify-center bg-white">
                     <FontAwesomeIcon icon={faSearch} className="text-indigo-dark p-1"/>
                     <input type="search" className="bg-transparent w-full text-black outline-none " onChange={searchHandler}/>

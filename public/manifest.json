@@ -5,10 +5,16 @@
     "display": "standalone",
     "background_color": "#fff",
     "description": "New movies comming up",
+    "theme_color" : "#fff",
     "icons": [
         {
           "src": "/blue_square.svg",
-          "size": "56x56",
+          "size": "144x144",
+          "type": "image/svg"
+        },
+        {
+          "src": "/blue_square.svg",
+          "size": "512x512",
           "type": "image/svg"
         }
       ]
